@@ -1,3 +1,3 @@
 # KeyCodes
 
-A description of this package.
+This package contains an enum which wraps all the carbon keycodes.
