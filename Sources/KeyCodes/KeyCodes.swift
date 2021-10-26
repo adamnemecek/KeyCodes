@@ -1,7 +1,7 @@
 import Carbon.HIToolbox.Events
 
 // copied from the "header" above
-public enum KeyCode: UInt16 {
+public enum KeyCode: UInt16, Equatable, Hashable {
     case a,
          s,
          d,
@@ -115,6 +115,12 @@ public enum KeyCode: UInt16 {
          rightArrow,
          downArrow,
          upArrow
+}
+
+extension KeyCode: Comparable {
+    public static func <(lhs: Self, rhs: Self) -> Bool {
+        lhs.rawValue < rhs.rawValue
+    }
 }
 
 extension KeyCode {
