@@ -117,6 +117,24 @@ public enum KeyCode: UInt16, Equatable, Hashable {
          upArrow
 }
 
+extension KeyCode {
+    public var number: Int? {
+        switch self {
+        case ._0, .keypad0: return 0
+        case ._1, .keypad1: return 1
+        case ._2, .keypad2: return 2
+        case ._3, .keypad3: return 3
+        case ._4, .keypad4: return 4
+        case ._5, .keypad5: return 5
+        case ._6, .keypad6: return 6
+        case ._7, .keypad7: return 7
+        case ._8, .keypad8: return 8
+        case ._9, .keypad9: return 9
+        default: return nil
+        }
+    }
+}
+
 extension KeyCode: Comparable {
     public static func <(lhs: Self, rhs: Self) -> Bool {
         lhs.rawValue < rhs.rawValue
