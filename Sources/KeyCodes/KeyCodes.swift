@@ -1,7 +1,7 @@
 import Carbon.HIToolbox.Events
 
 // copied from the "header" above
-public enum KeyCode: UInt16, Equatable, Hashable {
+public enum KeyCode: UInt16, Equatable, Hashable, CaseIterable, RawRepresentable, Codable {
     case a,
          s,
          d,
@@ -120,17 +120,17 @@ public enum KeyCode: UInt16, Equatable, Hashable {
 extension KeyCode {
     public var number: Int? {
         switch self {
-        case ._0, .keypad0: return 0
-        case ._1, .keypad1: return 1
-        case ._2, .keypad2: return 2
-        case ._3, .keypad3: return 3
-        case ._4, .keypad4: return 4
-        case ._5, .keypad5: return 5
-        case ._6, .keypad6: return 6
-        case ._7, .keypad7: return 7
-        case ._8, .keypad8: return 8
-        case ._9, .keypad9: return 9
-        default: return nil
+        case ._0, .keypad0: 0
+        case ._1, .keypad1: 1
+        case ._2, .keypad2: 2
+        case ._3, .keypad3: 3
+        case ._4, .keypad4: 4
+        case ._5, .keypad5: 5
+        case ._6, .keypad6: 6
+        case ._7, .keypad7: 7
+        case ._8, .keypad8: 8
+        case ._9, .keypad9: 9
+        default: nil
         }
     }
 }
@@ -143,120 +143,120 @@ extension KeyCode: Comparable {
 
 extension KeyCode {
     public init(kc: Int) {
-        switch kc {
-        case kVK_ANSI_A: self = .a
-        case kVK_ANSI_S: self = .s
-        case kVK_ANSI_D: self = .d
-        case kVK_ANSI_F: self = .f
-        case kVK_ANSI_H: self = .h
-        case kVK_ANSI_G: self = .g
-        case kVK_ANSI_Z: self = .z
-        case kVK_ANSI_X: self = .x
-        case kVK_ANSI_C: self = .c
-        case kVK_ANSI_V: self = .v
-        case kVK_ANSI_B: self = .b
-        case kVK_ANSI_Q: self = .q
-        case kVK_ANSI_W: self = .w
-        case kVK_ANSI_E: self = .e
-        case kVK_ANSI_R: self = .r
-        case kVK_ANSI_Y: self = .y
-        case kVK_ANSI_T: self = .t
-        case kVK_ANSI_1: self = ._1
-        case kVK_ANSI_2: self = ._2
-        case kVK_ANSI_3: self = ._3
-        case kVK_ANSI_4: self = ._4
-        case kVK_ANSI_6: self = ._6
-        case kVK_ANSI_5: self = ._5
-        case kVK_ANSI_Equal: self = .equal
-        case kVK_ANSI_9: self = ._9
-        case kVK_ANSI_7: self = ._7
-        case kVK_ANSI_Minus: self = .minus
-        case kVK_ANSI_8: self = ._8
-        case kVK_ANSI_0: self = ._0
-        case kVK_ANSI_RightBracket: self = .rightBracket
-        case kVK_ANSI_O: self = .o
-        case kVK_ANSI_U: self = .u
-        case kVK_ANSI_LeftBracket: self = .leftBracket
-        case kVK_ANSI_I: self = .i
-        case kVK_ANSI_P: self = .p
-        case kVK_ANSI_L: self = .l
-        case kVK_ANSI_J: self = .j
-        case kVK_ANSI_Quote: self = .quote
-        case kVK_ANSI_K: self = .k
-        case kVK_ANSI_Semicolon: self = .semicolon
-        case kVK_ANSI_Backslash: self = .backslash
-        case kVK_ANSI_Comma: self = .comma
-        case kVK_ANSI_Slash: self = .slash
-        case kVK_ANSI_N: self = .n
-        case kVK_ANSI_M: self = .m
-        case kVK_ANSI_Period: self = .period
-        case kVK_ANSI_Grave: self = .grave
-        case kVK_ANSI_KeypadDecimal: self = .keypadDecimal
-        case kVK_ANSI_KeypadMultiply: self = .keypadMultiply
-        case kVK_ANSI_KeypadPlus: self = .keypadPlus
-        case kVK_ANSI_KeypadClear: self = .keypadClear
-        case kVK_ANSI_KeypadDivide: self = .keypadDivide
-        case kVK_ANSI_KeypadEnter: self = .keypadEnter
-        case kVK_ANSI_KeypadMinus: self = .keypadMinus
-        case kVK_ANSI_KeypadEquals: self = .keypadEquals
-        case kVK_ANSI_Keypad0: self = .keypad0
-        case kVK_ANSI_Keypad1: self = .keypad1
-        case kVK_ANSI_Keypad2: self = .keypad2
-        case kVK_ANSI_Keypad3: self = .keypad3
-        case kVK_ANSI_Keypad4: self = .keypad4
-        case kVK_ANSI_Keypad5: self = .keypad5
-        case kVK_ANSI_Keypad6: self = .keypad6
-        case kVK_ANSI_Keypad7: self = .keypad7
-        case kVK_ANSI_Keypad8: self = .keypad8
-        case kVK_ANSI_Keypad9: self = .keypad9
-        case kVK_Return: self = .`return`
-        case kVK_Tab: self = .tab
-        case kVK_Space: self = .space
-        case kVK_Delete: self = .delete
-        case kVK_Escape: self = .escape
-        case kVK_Command: self = .command
-        case kVK_Shift: self = .shift
-        case kVK_CapsLock: self = .capsLock
-        case kVK_Option: self = .option
-        case kVK_Control: self = .control
-        case kVK_RightCommand: self = .rightCommand
-        case kVK_RightShift: self = .rightShift
-        case kVK_RightOption: self = .rightOption
-        case kVK_RightControl: self = .rightControl
-        case kVK_Function: self = .`function`
-        case kVK_F17: self = .f17
-        case kVK_VolumeUp: self = .volumeUp
-        case kVK_VolumeDown: self = .volumeDown
-        case kVK_Mute: self = .mute
-        case kVK_F18: self = .f18
-        case kVK_F19: self = .f19
-        case kVK_F20: self = .f20
-        case kVK_F5: self = .f5
-        case kVK_F6: self = .f6
-        case kVK_F7: self = .f7
-        case kVK_F3: self = .f3
-        case kVK_F8: self = .f8
-        case kVK_F9: self = .f9
-        case kVK_F11: self = .f11
-        case kVK_F13: self = .f13
-        case kVK_F16: self = .f16
-        case kVK_F14: self = .f14
-        case kVK_F10: self = .f10
-        case kVK_F12: self = .f12
-        case kVK_F15: self = .f15
-        case kVK_Help: self = .help
-        case kVK_Home: self = .home
-        case kVK_PageUp: self = .pageUp
-        case kVK_ForwardDelete: self = .forwardDelete
-        case kVK_F4: self = .f4
-        case kVK_End: self = .end
-        case kVK_F2: self = .f2
-        case kVK_PageDown: self = .pageDown
-        case kVK_F1: self = .f1
-        case kVK_LeftArrow: self = .leftArrow
-        case kVK_RightArrow: self = .rightArrow
-        case kVK_DownArrow: self = .downArrow
-        case kVK_UpArrow: self = .upArrow
+        self = switch kc {
+        case kVK_ANSI_A: .a
+        case kVK_ANSI_S: .s
+        case kVK_ANSI_D: .d
+        case kVK_ANSI_F: .f
+        case kVK_ANSI_H: .h
+        case kVK_ANSI_G: .g
+        case kVK_ANSI_Z: .z
+        case kVK_ANSI_X: .x
+        case kVK_ANSI_C: .c
+        case kVK_ANSI_V: .v
+        case kVK_ANSI_B: .b
+        case kVK_ANSI_Q: .q
+        case kVK_ANSI_W: .w
+        case kVK_ANSI_E: .e
+        case kVK_ANSI_R: .r
+        case kVK_ANSI_Y: .y
+        case kVK_ANSI_T: .t
+        case kVK_ANSI_1: ._1
+        case kVK_ANSI_2: ._2
+        case kVK_ANSI_3: ._3
+        case kVK_ANSI_4: ._4
+        case kVK_ANSI_6: ._6
+        case kVK_ANSI_5: ._5
+        case kVK_ANSI_Equal: .equal
+        case kVK_ANSI_9: ._9
+        case kVK_ANSI_7: ._7
+        case kVK_ANSI_Minus: .minus
+        case kVK_ANSI_8: ._8
+        case kVK_ANSI_0: ._0
+        case kVK_ANSI_RightBracket: .rightBracket
+        case kVK_ANSI_O: .o
+        case kVK_ANSI_U: .u
+        case kVK_ANSI_LeftBracket: .leftBracket
+        case kVK_ANSI_I: .i
+        case kVK_ANSI_P: .p
+        case kVK_ANSI_L: .l
+        case kVK_ANSI_J: .j
+        case kVK_ANSI_Quote: .quote
+        case kVK_ANSI_K: .k
+        case kVK_ANSI_Semicolon: .semicolon
+        case kVK_ANSI_Backslash: .backslash
+        case kVK_ANSI_Comma: .comma
+        case kVK_ANSI_Slash: .slash
+        case kVK_ANSI_N: .n
+        case kVK_ANSI_M: .m
+        case kVK_ANSI_Period: .period
+        case kVK_ANSI_Grave: .grave
+        case kVK_ANSI_KeypadDecimal: .keypadDecimal
+        case kVK_ANSI_KeypadMultiply: .keypadMultiply
+        case kVK_ANSI_KeypadPlus: .keypadPlus
+        case kVK_ANSI_KeypadClear: .keypadClear
+        case kVK_ANSI_KeypadDivide: .keypadDivide
+        case kVK_ANSI_KeypadEnter: .keypadEnter
+        case kVK_ANSI_KeypadMinus: .keypadMinus
+        case kVK_ANSI_KeypadEquals: .keypadEquals
+        case kVK_ANSI_Keypad0: .keypad0
+        case kVK_ANSI_Keypad1: .keypad1
+        case kVK_ANSI_Keypad2: .keypad2
+        case kVK_ANSI_Keypad3: .keypad3
+        case kVK_ANSI_Keypad4: .keypad4
+        case kVK_ANSI_Keypad5: .keypad5
+        case kVK_ANSI_Keypad6: .keypad6
+        case kVK_ANSI_Keypad7: .keypad7
+        case kVK_ANSI_Keypad8: .keypad8
+        case kVK_ANSI_Keypad9: .keypad9
+        case kVK_Return: .`return`
+        case kVK_Tab: .tab
+        case kVK_Space: .space
+        case kVK_Delete: .delete
+        case kVK_Escape: .escape
+        case kVK_Command: .command
+        case kVK_Shift: .shift
+        case kVK_CapsLock: .capsLock
+        case kVK_Option: .option
+        case kVK_Control: .control
+        case kVK_RightCommand: .rightCommand
+        case kVK_RightShift: .rightShift
+        case kVK_RightOption: .rightOption
+        case kVK_RightControl: .rightControl
+        case kVK_Function: .`function`
+        case kVK_F17: .f17
+        case kVK_VolumeUp: .volumeUp
+        case kVK_VolumeDown: .volumeDown
+        case kVK_Mute: .mute
+        case kVK_F18: .f18
+        case kVK_F19: .f19
+        case kVK_F20: .f20
+        case kVK_F5: .f5
+        case kVK_F6: .f6
+        case kVK_F7: .f7
+        case kVK_F3: .f3
+        case kVK_F8: .f8
+        case kVK_F9: .f9
+        case kVK_F11: .f11
+        case kVK_F13: .f13
+        case kVK_F16: .f16
+        case kVK_F14: .f14
+        case kVK_F10: .f10
+        case kVK_F12: .f12
+        case kVK_F15: .f15
+        case kVK_Help: .help
+        case kVK_Home: .home
+        case kVK_PageUp: .pageUp
+        case kVK_ForwardDelete: .forwardDelete
+        case kVK_F4: .f4
+        case kVK_End: .end
+        case kVK_F2: .f2
+        case kVK_PageDown: .pageDown
+        case kVK_F1: .f1
+        case kVK_LeftArrow: .leftArrow
+        case kVK_RightArrow: .rightArrow
+        case kVK_DownArrow: .downArrow
+        case kVK_UpArrow: .upArrow
         default:
             fatalError("unrecognized keycode \(kc)")
         }
@@ -267,6 +267,7 @@ extension KeyCode {
 import Cocoa
 
 extension NSEvent {
+    @inlinable
     public var logicalKeyCode: KeyCode {
         KeyCode(kc: Int(self.keyCode))
     }
